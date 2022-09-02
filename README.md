@@ -31,5 +31,12 @@
 - After login to the system you should see the dashboard with the option to file an upload form.
 - Upload input.csv file and you will get the result.
 
+# Run PHPStan
+- Run: php ./vendor/phpstan/phpstan/phpstan analyse --generate-baseline --memory-limit=2G
+
+# Run PHPUnit
+- Install PHPUnit throgh composer in global with this command: composer global require phpunit/phpunit
+- run: phpunit
+
 ## Note
 In the task description the output result now is not right. Due to big changes in JPY currency with the EUR one result is not the same as the given output result.
