@@ -36,6 +36,7 @@
 
 ## Run PHPUnit
 - Install PHPUnit throgh composer in global with this command: composer global require phpunit/phpunit
+- run php artisan config:clear (for safe)
 - run: phpunit
 
 ## Note
