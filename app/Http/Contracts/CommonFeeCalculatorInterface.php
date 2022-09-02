@@ -3,5 +3,5 @@ namespace App\Http\Contracts;
 
 interface CommonFeeCalculatorInterface
 {
-  public function feeCalculate(array $fileElement);
+  public function feeCalculate(array $fileElement): mixed;
 }

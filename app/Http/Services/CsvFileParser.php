@@ -5,7 +5,6 @@ use App\Http\Contracts\FileParsingByTypeInterface;
 
 class CsvFileParser implements FileParsingByTypeInterface
 {
-
     final public static function parseFile(mixed  $file): array
     {
       $data = [];
@@ -26,12 +25,3 @@ class CsvFileParser implements FileParsingByTypeInterface
       return $data;
     }
 }
-
-
-
-// $data["payment_date"] = fgetcsv($fileHandle, null, ",");
-// $data["user_id"] = fgetcsv($fileHandle, null, ",");
-// $data["client_type"] = fgetcsv($fileHandle, null, ",");
-// $data["payment_type"] = fgetcsv($fileHandle, null, ",");
-// $data["amount"] = fgetcsv($fileHandle, null, ",");
-// $data["currency"] = fgetcsv($fileHandle, null, ",");

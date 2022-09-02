@@ -16,7 +16,7 @@ class FeeCalculatorService implements FeeCalculatorInterface
       $this->result = [];
     }
 
-    public function execute(mixed $file)
+    public function execute(mixed $file): array
     {
       $fileParsing = $this->fileParsing->fileParser($file);
 

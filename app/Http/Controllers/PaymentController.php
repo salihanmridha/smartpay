@@ -16,10 +16,14 @@ class PaymentController extends Controller
 
     /**
      * @param  StorePaymentRequest $request
-     * @return string
+     * @return void
      */
-    public function store(StorePaymentRequest $request)
+    public function store(StorePaymentRequest $request): void
     {
-      return $this->feeCalculator->execute($request->file("file"));
+      $feeCalculation =  $this->feeCalculator->execute($request->file("file"));
+
+      for ($i=0; $i < count($feeCalculation); $i++) {
+        echo $feeCalculation[$i] . "<br>";
+      }
     }
 }

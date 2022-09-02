@@ -8,6 +8,11 @@ use App\Models\CurrencyMinorUnit;
 
 class CommonFeeCalculationQueryService
 {
+    /**
+     * @param  string      $paymentType
+     * @param  string      $clientType
+     * @return PaymentRule
+     */
     public function getPaymentRuleByPaymentClientType(string $paymentType, string $clientType): PaymentRule
     {
       return PaymentRule::where("payment_type", $paymentType)
@@ -16,6 +21,11 @@ class CommonFeeCalculationQueryService
     }
 
 
+    /**
+     * @param  PaymentRule $paymentRule
+     * @param  array       $fileElement
+     * @return float
+     */
     public function getFreeLimit(PaymentRule $paymentRule, array $fileElement): float
     {
       $startEndWeekDay = startEndWeekDay($fileElement["payment_date"]);
@@ -43,15 +53,24 @@ class CommonFeeCalculationQueryService
       return (float)$paymentRule->free_of_charge_amount;
     }
 
-    public function calculation(float $amount, float $chargeBy, string $currency)
+
+    /**
+     * @param  float  $amount
+     * @param  float  $chargeBy
+     * @param  string $currency
+     * @return mixed|int|float|null
+     */
+    public function calculation(float $amount, float $chargeBy, string $currency): mixed
     {
       $minorUnit = CurrencyMinorUnit::where("currency", $currency)->first();
+
       $commisionFee = ($amount * $chargeBy) / 100;
-      if ($commisionFee < number_format($commisionFee, $minorUnit->minor_unit)) {
-        return number_format($commisionFee, $minorUnit->minor_unit);
+
+      if ($commisionFee <= number_format($commisionFee, $minorUnit ? $minorUnit->minor_unit : 2 )) {
+        return number_format($commisionFee, $minorUnit ? $minorUnit->minor_unit : 2);
       }
 
-      return number_format((round($commisionFee / 0.05, 0)) * 0.05, $minorUnit->minor_unit);
+      return number_format((round($commisionFee / 0.05, 0)) * 0.05, $minorUnit ? $minorUnit->minor_unit : 2);
 
     }
 }

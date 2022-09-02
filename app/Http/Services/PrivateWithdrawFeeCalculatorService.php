@@ -13,7 +13,11 @@ class PrivateWithdrawFeeCalculatorService extends CommonFeeCalculationQueryServi
 {
     use CurrencyConverter;
 
-    public function feeCalculate(array $fileElement)
+    /**
+     * @param  array $fileElement
+     * @return mixed|int|float
+     */
+    public function feeCalculate(array $fileElement): mixed
     {
       $paymentRule = $this->getPaymentRuleByPaymentClientType($fileElement["payment_type"], $fileElement["client_type"]);
       $getFreeLimit = $this->getFreeLimit($paymentRule, $fileElement);
@@ -21,6 +25,8 @@ class PrivateWithdrawFeeCalculatorService extends CommonFeeCalculationQueryServi
       if ($getFreeLimit > 0.00) {
         $this->storeFreeOfChargePayment($fileElement, $getFreeLimit);
       }
+
+      $getChargeAmount = 0.00;
 
       if ($fileElement["currency"] == $this->currencyConvert($fileElement["currency"])["base"]) {
         $getChargeAmount = ($getFreeLimit - $fileElement["amount"]) < 0 ? ($fileElement["amount"] - $getFreeLimit) : 0.00;
@@ -36,8 +42,15 @@ class PrivateWithdrawFeeCalculatorService extends CommonFeeCalculationQueryServi
 
     }
 
+    /**
+     * @param array $fileElement
+     * @param float $getFreeLimit
+     * @return void
+     */
     public function storeFreeOfChargePayment(array $fileElement, float $getFreeLimit): void
     {
+      $usingLimit = 0.00;
+
       if ($fileElement["currency"] == $this->currencyConvert($fileElement["currency"])["base"]) {
         $usingLimit = ($getFreeLimit - $fileElement["amount"]) < 0 ? $getFreeLimit : $fileElement["amount"];
       }

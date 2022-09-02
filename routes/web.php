@@ -15,7 +15,8 @@ use App\Http\Controllers\PaymentController;
 */
 
 Route::get('/', function () {
-    return \App\Models\FreeOfChargePayment::all();
+    // return \App\Models\PaymentRule::all();
+    return redirect()->route('login');
 });
 
 Route::get('/dashboard', function () {

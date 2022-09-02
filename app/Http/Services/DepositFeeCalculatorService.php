@@ -4,11 +4,11 @@ namespace App\Http\Services;
 
 use App\Http\Contracts\CommonFeeCalculatorInterface;
 
-class WithdrawFeeCalculatorService implements CommonFeeCalculatorInterface
+class DepositFeeCalculatorService implements CommonFeeCalculatorInterface
 {
     /**
      * @param  array $fileElement
-     * @return mixed|int|float             
+     * @return mixed|int|float
      */
     public function feeCalculate(array $fileElement): mixed
     {
