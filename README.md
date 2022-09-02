@@ -38,6 +38,7 @@
 - Install PHPUnit throgh composer in global with this command: composer global require phpunit/phpunit
 - run php artisan config:clear (for safe)
 - run: phpunit
+- run: phpunit --filter test_logged_in_users_can_upload_and_calculate_fee (this is only for the fee task)
 
 ## Note
 In the task description the output result now is not right. Due to big changes in JPY currency with the EUR one result is not the same as the given output result.
