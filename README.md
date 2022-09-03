@@ -12,6 +12,7 @@
 - Composer update
 - run: npm install
 - run: npm run dev
+- run: npm run build
 - Rename .env.example to .env
 - run: php artisan key:generate
 - run: php artisan migrate:fresh --seed
