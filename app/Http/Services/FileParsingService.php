@@ -3,6 +3,7 @@
 namespace App\Http\Services;
 
 use App\Http\Contracts\FileParsingInterface;
+use Exception;
 
 
 class FileParsingService implements FileParsingInterface
@@ -10,7 +11,7 @@ class FileParsingService implements FileParsingInterface
     /**
      * @param $file
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     public function fileParser(mixed $file): array
     {
@@ -21,7 +22,7 @@ class FileParsingService implements FileParsingInterface
       if (class_exists($fullClassName)) {
           return (new $fullClassName())->parseFile($file);
       } else {
-          throw new \Exception('Invalid file type format: ' . $fullClassName);
+          throw new Exception('Invalid file type format: ' . $fullClassName);
       }
     }
 

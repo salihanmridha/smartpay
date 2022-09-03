@@ -4,6 +4,7 @@ namespace App\Http\Services;
 
 use App\Http\Contracts\FeeCalculatorInterface;
 use App\Http\Contracts\FileParsingInterface;
+use Exception;
 
 class FeeCalculatorService extends CommonFeeCalculationQueryService implements FeeCalculatorInterface
 {
@@ -31,7 +32,7 @@ class FeeCalculatorService extends CommonFeeCalculationQueryService implements F
             $commisionFee = (new $fullClassName())->feeCalculate($fileElement, $crossRate);
             array_push($this->result, $commisionFee);
         } else {
-            throw new \Exception('CSV file has invalid payment type: ' . $fullClassName);
+            throw new Exception('CSV file has invalid payment type: ' . $fullClassName);
         }
       }
 

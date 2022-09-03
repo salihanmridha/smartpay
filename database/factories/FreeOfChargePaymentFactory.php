@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\FreeOfChargePayment;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\FreeOfChargePayment>
+ * @extends Factory
  */
 class FreeOfChargePaymentFactory extends Factory
 {

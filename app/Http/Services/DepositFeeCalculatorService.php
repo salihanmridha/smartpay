@@ -3,6 +3,7 @@
 namespace App\Http\Services;
 
 use App\Http\Contracts\CommonFeeCalculatorInterface;
+use Exception;
 
 class DepositFeeCalculatorService implements CommonFeeCalculatorInterface
 {
@@ -17,7 +18,7 @@ class DepositFeeCalculatorService implements CommonFeeCalculatorInterface
       if (class_exists($fullClassName)) {
           return (new $fullClassName())->feeCalculate($fileElement);
       } else {
-          throw new \Exception('CSV file has invalid client with payment type: ' . $fullClassName);
+          throw new Exception('CSV file has invalid client with payment type: ' . $fullClassName);
       }
     }
 
