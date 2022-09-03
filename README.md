@@ -11,12 +11,11 @@
 - Clone the repository
 - Composer update
 - run: npm install
-- run: npm run dev
-- run: npm run build
+- run: npm run dev or npm run build
 - Rename .env.example to .env
 - run: php artisan key:generate
 - run: php artisan migrate:fresh --seed
-- if any error is thrown in the console then check if your sqlite driver is working or not. if working then try to run: touch database/database.sqlite and then run php artisan migrate --seed
+- if any error is thrown in the console then check if your sqlite driver is working or not. if working then try to run: touch database/database.sqlite and then run php artisan migrate:fresh --seed
 - run: php artisan optimize
 - run: php artisan cache:clear
 - run: php artisan serve
@@ -34,7 +33,7 @@
 - Upload input.csv file and you will get the result.
 
 ## Run PHPStan
-- Run: php ./vendor/phpstan/phpstan/phpstan analyse --generate-baseline --memory-limit=2G
+- Run: php ./vendor/phpstan/phpstan/phpstan analyse --memory-limit=2G
 
 ## Run PHPUnit
 - Install PHPUnit throgh composer in global with this command: composer global require phpunit/phpunit
