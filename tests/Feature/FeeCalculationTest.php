@@ -83,6 +83,6 @@ class FeeCalculationTest extends TestCase
         $response = $this->post('/payment-store', $attributes)
                          ->assertStatus(200);
 
-        $this->expectOutputString('0.60<br>3.00<br>0.00<br>0.06<br>1.50<br>0.00<br>0.69<br>0.30<br>0.30<br>3.00<br>0.00<br>0.00<br>8,607.40<br>');
+        $this->expectOutputString('0.60<br>3.00<br>0.00<br>0.06<br>1.50<br>0.00<br>0.69<br>0.30<br>0.30<br>3.00<br>0.00<br>0.00<br>8607.40<br>');
     }
 }

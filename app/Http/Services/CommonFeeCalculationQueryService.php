@@ -5,9 +5,11 @@ namespace App\Http\Services;
 use App\Models\FreeOfChargePayment;
 use App\Models\PaymentRule;
 use App\Models\CurrencyMinorUnit;
+use App\Traits\CurrencyConverter;
 
 class CommonFeeCalculationQueryService
 {
+    use CurrencyConverter;
     /**
      * @param  string      $paymentType
      * @param  string      $clientType
@@ -66,11 +68,24 @@ class CommonFeeCalculationQueryService
 
       $commisionFee = ($amount * $chargeBy) / 100;
 
-      if ($commisionFee <= number_format($commisionFee, $minorUnit ? $minorUnit->minor_unit : 2 )) {
+      if ($commisionFee <= number_format($commisionFee, $minorUnit ? $minorUnit->minor_unit : 2, '.', '' )) {
         return number_format($commisionFee, $minorUnit ? $minorUnit->minor_unit : 2);
       }
 
-      return number_format((round($commisionFee / 0.05, 0)) * 0.05, $minorUnit ? $minorUnit->minor_unit : 2);
+      return number_format((round($commisionFee / 0.05, 0)) * 0.05, $minorUnit ? $minorUnit->minor_unit : 2, '.', '');
 
+    }
+
+    /**
+     * @param  string
+     * @return array
+     */
+    public function getCrossRate(string $currency): array
+    {
+      if (count($this->crossRate) == 0) {
+        $this->crossRate = $this->getAllRates();
+      }
+
+      return ["base" => $this->crossRate["base"], "rate" => $this->crossRate['rates'][$currency]];
     }
 }
